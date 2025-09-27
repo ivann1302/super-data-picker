@@ -1,0 +1,33 @@
+/* CSS Module for AutoRefresh */
+.row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.label {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.btn {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  color: #1f2937;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.btnPrimary {
+  background: #1976d2;
+  border-color: #1976d2;
+  color: #fff;
+}
+
+.btnDisabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

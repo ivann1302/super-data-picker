@@ -1,0 +1,68 @@
+/* CSS Module for SuperDatePicker */
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 10px;
+  width: 100%;
+  min-width: 260px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.caption {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.section {
+  border-top: 1px solid #eee;
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.rowMb4 {
+  margin-bottom: 4px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 3px 6px;
+  background: #f3f4f6;
+  border-radius: 999px;
+  font-size: 11px;
+  color: #374151;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.footerInfo {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
