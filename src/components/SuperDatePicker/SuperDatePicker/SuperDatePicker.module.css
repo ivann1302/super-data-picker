@@ -66,3 +66,68 @@
   gap: 12px;
   align-items: center;
 }
+
+/* MVP input styles */
+.inputCol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 220px;
+}
+.label {
+  font-size: 12px;
+  color: #555;
+}
+.input {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.inputError {
+  border: 1px solid #d33;
+  background: #fff6f6;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.errorText {
+  color: #d33;
+  font-size: 11px;
+}
+.updateBtn {
+  padding: 6px 10px;
+  font-size: 12px;
+  border: 1px solid #666;
+  background: #f5f5f5;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 30px;
+}
+.updateBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.quickSelectBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+.quickTitle {
+  font-size: 12px;
+  color: #666;
+}
+.quickList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.quickBtn {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}

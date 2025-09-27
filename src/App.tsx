@@ -7,7 +7,6 @@ function App() {
     start: 'now-15m',
     end: 'now',
   })
-  const [mode, setMode] = useState<'absolute' | 'relative' | 'now'>('relative')
   const [refresh, setRefresh] = useState<{ interval: number; isPaused: boolean }>({
     interval: 30000,
     isPaused: true,
@@ -35,16 +34,18 @@ function App() {
       <div style={{ marginBottom: 12 }}>{toHumanRange(range.start, range.end)}</div>
 
       <SuperDatePicker
-        value={range}
-        mode={mode}
-        onChange={({ value, mode }) => {
-          setRange(value)
-          if (mode) setMode(mode)
-        }}
-        onApply={apply}
-        isLoading={loading}
+        start={range.start}
+        end={range.end}
+        onTimeChange={(next) => setRange(next)}
+        showUpdateButton
+        commonlyUsedRanges={undefined}
+        recentlyUsedRanges={[
+          { label: 'Последний час', start: 'now-1h', end: 'now' },
+          { label: 'Последние 24 часа', start: 'now-24h', end: 'now' },
+        ]}
         refresh={refresh}
         onRefreshChange={setRefresh}
+        isLoading={loading}
       />
     </div>
   )
