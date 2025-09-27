@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import SuperDatePicker from './components/SuperDatePicker/SuperDatePicker/SuperDatePicker'
 import { toHumanRange } from './utils/date/format'
 
@@ -7,7 +7,7 @@ function App() {
     start: 'now-15m',
     end: 'now',
   })
-  const [refresh, setRefresh] = useState<{ interval: number; isPaused: boolean }>({
+  const [refresh] = useState<{ interval: number; isPaused: boolean }>({
     interval: 30000,
     isPaused: true,
   })
@@ -19,14 +19,6 @@ function App() {
     await new Promise((r) => setTimeout(r, 400))
     setLoading(false)
   }, [])
-
-  useEffect(() => {
-    if (refresh.isPaused || refresh.interval <= 0) return
-    const id = setInterval(() => {
-      apply()
-    }, refresh.interval)
-    return () => clearInterval(id)
-  }, [refresh, apply])
 
   return (
     <div style={{ padding: 16 }}>
@@ -43,8 +35,9 @@ function App() {
           { label: 'Последний час', start: 'now-1h', end: 'now' },
           { label: 'Последние 24 часа', start: 'now-24h', end: 'now' },
         ]}
-        refresh={refresh}
-        onRefreshChange={setRefresh}
+        onRefresh={apply}
+        isPaused={refresh.isPaused}
+        refreshInterval={refresh.interval}
         isLoading={loading}
       />
     </div>

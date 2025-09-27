@@ -1,4 +1,5 @@
 import type moment from 'moment'
+import type React from 'react'
 
 // Base types
 export type DateRange = { start: string; end: string }
@@ -18,38 +19,41 @@ export type RefreshConfig = {
   isPaused: boolean
 }
 
+export type RefreshUnits = 's' | 'm' | 'h'
+
 // Component props
 export interface SuperDatePickerProps {
-  // ЛЕГАСИ API (сохранён для обратной совместимости)
-  value?: DateRange
-  mode?: Mode
-  onChange?: (next: { value: DateRange; mode?: Mode }) => void
-
-  // Presets and quick select (legacy)
-  presets?: Preset[]
-  onPresetSelect?: (preset: Preset) => void
-
-  // Optional bounds
-  min?: moment.Moment
-  max?: moment.Moment
-
-  // Formatting/UI controls
-  dateTimeFormat?: string
-  isDisabled?: boolean
-  isLoading?: boolean
-
-  // Auto refresh
-  refresh?: RefreshConfig
-  onRefreshChange?: (next: RefreshConfig) => void
-  onApply?: () => void
-
-  // НОВЫЙ MVP API из ask файла
+  // MVP API only
   start?: string // по умолчанию 'now-15m'
   end?: string // по умолчанию 'now'
   onTimeChange?: (range: { start: string; end: string }) => void
   showUpdateButton?: boolean | 'iconOnly'
   commonlyUsedRanges?: Preset[]
   recentlyUsedRanges?: Preset[]
+  /**
+   * Кастомные панели в блоке Quick select. Минимальная поддержка: вывод JSX-контента.
+   */
+  customQuickSelectPanels?: { title?: string; content: React.ReactNode }[]
+  /**
+   * Кастомный рендерер секции Quick select. Если задан, компонент передаст части
+   * (commonly, recently, customPanels) и рендер полностью на стороне вызывающего.
+   */
+  customQuickSelectRender?: (parts: {
+    commonlyUsed: React.ReactNode
+    recentlyUsed: React.ReactNode
+    customPanels: React.ReactNode
+  }) => React.ReactNode
+
+  // Auto refresh (MVP API)
+  onRefresh?: (info: { start: string; end: string }) => void | Promise<void>
+  isPaused?: boolean // по умолчанию true
+  refreshInterval?: number // миллисекунды, по умолчанию 1000
+  refreshMinInterval?: number // нижняя граница для безопасности, по умолчанию 0
+  refreshIntervalUnits?: RefreshUnits // опционально; для UI
+
+  // UI flags
+  isDisabled?: boolean
+  isLoading?: boolean
 }
 
 export interface QuickSelectProps {
